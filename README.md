@@ -1,10 +1,10 @@
 **Introduction**
 
-This project was performed as part of the Masters in Data science Program at Indiana University (BDAA - 34717).  The goal of this Project is to build a model to perform Sentiment analysis of user provided reviews on a given topic or subject. Sentiment analysis, also referred to as "Opinion mining", refers to the application of computational methodologies (such as statistical modeling techniques, text analysis, natural language processing techniques, machine learning models, computational linguistics) to the purposes of classifying text to identify and predict the overall sentiment of a given text input.
+For this Project we will build a model to perform Sentiment analysis of user provided reviews on a given topic or subject. Sentiment analysis, also referred to as "Opinion mining", refers to the application of computational methodologies (such as statistical modeling techniques, text analysis, natural language processing techniques, machine learning models, computational linguistics) to the purposes of classifying text to identify and predict the overall sentiment of a given text input.
 
 **Approach**
 
-For the purposes of this project we have used the Amazon movie reviews dataset available on the Stanford data repository ( [http://snap.stanford.edu/data/web-Movies.html](http://snap.stanford.edu/data/web-Movies.html)). The input dataset has over a 7 million review texts and summary, from over 800,000 users, for about 250,000+ movies.
+For the purposes of this project we have used the Amazon movie reviews dataset available on the Stanford data repository http://snap.stanford.edu/data/web-Movies.html](http://snap.stanford.edu/data/web-Movies.html)). The input dataset has over a 7 million review texts and summary, from over 800,000 users, for about 250,000+ movies.
 
 To build a classifier model we use the Naïve Bayes Classifier implementation available as part of the Apache Spark MLLib module. The Naïve Bayes model is a probabilistic classification model based on the Bayes rule which predicts the probability of the Class of an input based on the conditional probabilities of the individual features observed in the input. The Naïve'ness about the algorithm is that it makes a strong assumption that the input features are independent of each other to enable application of the Bayes rule.
 
@@ -13,58 +13,10 @@ We split the dataset into training and validation sets. We first preprocess the 
 We split the data into a training set and test set at a ratio of 8:2, where we will use the training set to train the model. We will evaluate the trained model
 
 
-
-**Data Pipeline**
-
-The data processing pipeline consists of various stages which can be visualized as below, and will be explained subsequently
-
-Prediction
-
-**Data Statistics**
-
-Here's some brief statistics about the dataset
-
-Number of reviews:                         7,911,684
-
-Number of users:                        889,176
-
-Number of products:                        253,059
-
-Users with > 50 reviews:                 16,341
-
-Median no. of words per review:         101
-
-Timespan:                                 Aug 1997 - Oct 2012
-
-
-
 **A little bit about Naïve Bayes Classifier**
 
-Naive Bayes classifier is a linear classifier that works on the Bayes theorem, which states that the probability of a Hypothesis (H) based on a given set of Evidences (E) will be equal to the product of the Probability of the Hypothesis and the conditional Probability of the Evidences given the Hypothesis, divided by the probability of the Evidences.
-
-PH∣E=PH∗PE∣HP(E) ![](data:image/*;base64,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)
-
-Naïve Bayes can be used for purposes of text classification and has been found to be quite efficient and fast.
-
-For the purposes of text classification the Bayes theorem can be formalized as:
-
-Where X = (X1,  X2,  X3,  X4 … Xm) is one instance of the input data point with "m" features
-
-        C = (C1, C2, C3, … Ck) is one of the "k" possible classes.
-
-Given that we have the conditional probabilities of the input associated to the classes, we can predict the conditional probability of a particular class given an input using Bayes theorem.
-
-So the predicted class for a given input (X1,  X2,  X3,  X4 … Xm) is calculated as
-
- CP= ![](data:image/*;base64,VkNMTVRGAQAxAAAAAAAAAAEAGwAAAAAAAAAAAAAAAAABAAAAAQAAAAEAAAABAAAAAW4FAADUAQAAJQAAAJYAAQACAAAACQCLAAEAAgAAAP//gQABABAAAAAAAAAAAAAAAG0FAADTAQAAlQABAAQAAAAAAAAAlgABAAIAAAAJAIsAAQACAAAAHwCKAAEAQgAAAAMAPAAAABAATGliZXJhdGlvbiBTZXJpZgAAAAAAAKYBAAAAAAMAAAAFAAAAAAACAP8DAAAAAAAAAAAA/wMAAAAAAIgAAQACAAAAAQCHAAEABQAAAP////8AhgABAAQAAAAAAAAAcgACABcAAABqAAAAcgEAAAEAQxkBAAAAAP//AQBDAIwAAQAAAAAAiwABAAIAAAAfAIoAAQBCAAAAAwA8AAAAEABMaWJlcmF0aW9uIFNlcmlmAAAAAAAApgEAAAAAAwAAAAUAAAAAAAIA/wMAAAAAAAAAAAD/AwAAAAAAiAABAAIAAAABAIcAAQAFAAAA/////wCGAAEABAAAAAAAAAByAAIAFwAAANwBAAByAQAAAQBQAgEAAAAA//8BAFAAjAABAAAAAACLAAEAAgAAAB8AigABADwAAAADADYAAAAKAE9wZW5TeW1ib2wAAAAAAACmAQAA//8AAAAABQAAAAAAAAD/AwAAAAAAAAAAAP8DAAAAAACIAAEAAgAAAAEAhwABAAUAAAD/////AIYAAQAEAAAAAAAAAHIAAgAaAAAA5QIAAHIBAAABAAAAPQBPAQAAAAD//wEAPQCMAAEAAAAAAIsAAQACAAAAHwCKAAEAPAAAAAMANgAAAAoAT3BlblN5bWJvbAAAAAAAAKYBAAD//wAAAAAFAAAAAAAAAP8DAAAAAAAAAAAA/wMAAAAAAIgAAQACAAAAAQCHAAEABQAAAP////8AhgABAAQAAAAAAIAAhgABAAQAAAAAAIAAcgACABoAAAA9BAAAcgEAAAEAAAC/ALsAAAAAAP//AQC/AIwAAQAAAAAAlQABAAQAAAAAAAAAlgABAAIAAAAJAIwAAQAAAAAA)X1,X2,X3,X4…Xmcargmaxc∈C∗P(c) ![](data:image/*;base64,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)
-
+Naive Bayes classifier is a linear classifier that works on the Bayes theorem, which states that the probability of a Hypothesis (H) based on a given set of Evidences (E) will be equal to the product of the Probability of the Hypothesis and the conditional Probability of the Evidences given the Hypothesis, divided by the probability of the Evidences.Naïve Bayes can be used for purposes of text classification and has been found to be quite efficient and fast.
 Naïve Bayes theorem makes a strong assumption that the input attributes are independent of each other, and so the above probability can be written as the product of individual conditional probabilities
-
-CP= ![](data:image/*;base64,VkNMTVRGAQAxAAAAAAAAAAEAGwAAAAAAAAAAAAAAAAABAAAAAQAAAAEAAAABAAAAAW4FAADUAQAAJQAAAJYAAQACAAAACQCLAAEAAgAAAP//gQABABAAAAAAAAAAAAAAAG0FAADTAQAAlQABAAQAAAAAAAAAlgABAAIAAAAJAIsAAQACAAAAHwCKAAEAQgAAAAMAPAAAABAATGliZXJhdGlvbiBTZXJpZgAAAAAAAKYBAAAAAAMAAAAFAAAAAAACAP8DAAAAAAAAAAAA/wMAAAAAAIgAAQACAAAAAQCHAAEABQAAAP////8AhgABAAQAAAAAAAAAcgACABcAAABqAAAAcgEAAAEAQxkBAAAAAP//AQBDAIwAAQAAAAAAiwABAAIAAAAfAIoAAQBCAAAAAwA8AAAAEABMaWJlcmF0aW9uIFNlcmlmAAAAAAAApgEAAAAAAwAAAAUAAAAAAAIA/wMAAAAAAAAAAAD/AwAAAAAAiAABAAIAAAABAIcAAQAFAAAA/////wCGAAEABAAAAAAAAAByAAIAFwAAANwBAAByAQAAAQBQAgEAAAAA//8BAFAAjAABAAAAAACLAAEAAgAAAB8AigABADwAAAADADYAAAAKAE9wZW5TeW1ib2wAAAAAAACmAQAA//8AAAAABQAAAAAAAAD/AwAAAAAAAAAAAP8DAAAAAACIAAEAAgAAAAEAhwABAAUAAAD/////AIYAAQAEAAAAAAAAAHIAAgAaAAAA5QIAAHIBAAABAAAAPQBPAQAAAAD//wEAPQCMAAEAAAAAAIsAAQACAAAAHwCKAAEAPAAAAAMANgAAAAoAT3BlblN5bWJvbAAAAAAAAKYBAAD//wAAAAAFAAAAAAAAAP8DAAAAAAAAAAAA/wMAAAAAAIgAAQACAAAAAQCHAAEABQAAAP////8AhgABAAQAAAAAAIAAhgABAAQAAAAAAIAAcgACABoAAAA9BAAAcgEAAAEAAAC/ALsAAAAAAP//AQC/AIwAAQAAAAAAlQABAAQAAAAAAAAAlgABAAIAAAAJAIwAAQAAAAAA)
-
-Note that in the equations for the classification we have removed the denominator as it does not affect the probability.
-
-
 
 **A brief about Apache Spark**
 
@@ -84,84 +36,38 @@ We parse the input dataset and validate of the records have the necessary attrib
 
 We then split the dataset into a Training set and Test set. We will create training RDD and Test RDD which will contain the labeled data points and the review texts (which comes from the summary). During this process we also tokenize the dataset to split the input text into tokens, convert into lower case and also remove some of the stop words based on a list we create. We then create a weighted bag-of-words model using TF-IDF. TF (Term Frequency) is weighted at the document level (or to the individual input text) such that it assigns greater weights to tokens that appear more frequently within the document. IDF (Inverse Document Frequency) is weighted to at the corpus level and assigns more weights to tokens that appear less frequently. IDF kind of normalizes the commonly occurring words, so the stop words get lesser weights
 
-
-
 **Model Evaluation**
 
 We will use the simple accuracy of prediction to determine the accuracy of the model which is calculated as a percentage of the Number of predicted classes to the Number of
 
 **Application and Environment configuration**
 
-We will run spark in a cluster mode on a Yarn cluster on the future systems grid. The Yarn Resource manager will manage the execution of the Spark jobs on the cluster.
-
 The program is written in Python and the spark application will be submitted to the framework using the spark-submit script, such as below.
 
 /opt/spark/bin/spark-submit --master yarn-client --num-executors 4 --conf spark.driver.memory=4g --conf spark.executor.memory=4g share/sparkscripts/SentimentClassifier.py
 
-**More preferably  -**
+**Running the application  -**
 
-An IPython Notebook has been created which can be run on one of the Spark front-end nodes on the cluster on the future systems.
-
-**Steps to setup and configure IPython Notebook on Future Systems**
-
-Ipynb can be installed via virtualenv, as below
-
-After connecting to the frontend node on future systems using SSH
-
-sbylaiah@frontend1:~$ virtualenv --system-site-packages  ipynb
-
-sbylaiah@frontend1:~$ source ipynb/bin/activate
-
-(ipynb) sbylaiah @frontend1:~$ pip install jupyter
-
-... (installing)...
-
- (ipynb) sbylaiah@frontend1:~$ IPYTHON\_OPTS="notebook --ip=0.0.0.0 --port=8988" /opt/spark/bin/pyspark
-
-Once the notebook server is running the same can be accessed from a local machine using SSH tunneling
-
-#connecting to remote NB Server port through the local port
-
-$ ssh sbylaiah@149.165.159.160 -p 2222 –L8988:localhost:8988 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
-
-It can then be accessed through the browser as below –
-
-[http://localhost:8988/](http://localhost:8988/)
-
-**Running the Application**
-
-The dataset can be downloaded from [https://snap.stanford.edu/data/movies.txt.gz](https://snap.stanford.edu/data/movies.txt.gz)
-
-And then extract the dataset
-
-sbylaiah@frontend3:~$ wget [https://snap.stanford.edu/data/movies.txt.gz](https://snap.stanford.edu/data/movies.txt.gz)
-
-sbylaiah@frontend3:~$ gzip -d movies.txt.gz
+sbylaiah@ubuntu:~$ wget [https://snap.stanford.edu/data/movies.txt.gz](https://snap.stanford.edu/data/movies.txt.gz)
+sbylaiah@ubuntu:~$ gzip -d movies.txt.gz
 
 **Source code Artifacts**
 
-The python scripts are at the location /home/sbylaiah/share/sparkscripts on futuresystems
+** PreProcessing the raw dataset **
 
-First run the below script to preprocess the dataset.
+sbylaiah@ubuntu:~$ python PreProcessReviewsData.py
 
-sbylaiah@frontend3:~$ python PreProcessReviewsData.py
-
-uses the extracted file shown before, produces an output file called movies-reviews.csv in the same path as the input file
+This uses the extracted file shown before, produces an output file called movies-reviews.csv in the same path as the input file
 
 Then the Sentiment classifier script can be run
 
-sbylaiah@frontend3:~$ /opt/spark/bin/spark-submit --master yarn-client --num-executors 4 --conf spark.driver.memory=4g --conf spark.executor.memory=4g share/sparkscripts/SentimentClassifier.py
+sbylaiah@ubuntu:~$ /opt/spark/bin/spark-submit --master yarn-client --num-executors 4 --conf spark.driver.memory=4g --conf spark.executor.memory=4g share/sparkscripts/SentimentClassifier.py
 
 uses the output from PreProcess stage
 
 **NOTE: The location of the raw dataset is specified within the python scripts itself**
 
-**MORE PREFERABLY**
+**MORE PREFERABLY THE SENTIMENT CLASSIFIER CAN BE RUN AS A IPYTHON NOTEBOOK** 
 
-The Sentiment classifier can be run as IPython notebook, for a more interactive experience. The code is interspersed with instructions for a self-driven seamless experience.
+The Sentiment classifier can be run as IPython notebook, for a more interactive experience. The code is interspersed with instructions for a self-driven guided execution. The python notebook is SentimentClassifier.ipynb
 
-The sentiment classifier notebook can be accessed as below
-
-[http://localhost:8988/notebooks/sparkscripts/SentimentClassifier.ipynb](http://localhost:8988/notebooks/sparkscripts/SentimentClassifier.ipynb)
-
-The notebook has complete instructions on the execution of  the script
